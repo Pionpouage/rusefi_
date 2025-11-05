@@ -1971,8 +1971,8 @@ uint8_t[TORQUE_CURVE_SIZE x TORQUE_CURVE_RPM_SIZE] autoscale torqueTable;;"Nm", 
 	float[SCRIPT_CURVE_16] scriptCurve6;;"y", 1, 0, -10000, 10000, 1
 	float[SCRIPT_CURVE_16] scriptCurve7Bins;;"x", 1, 0, -10000, 10000, 1
 	float[SCRIPT_CURVE_16] scriptCurve7;;"y", 1, 0, -10000, 10000, 1
-	float[SCRIPT_CURVE_12] scriptCurve8Bins;;"x", 1, 0, -10000, 10000, 0
-	float[SCRIPT_CURVE_12] scriptCurve8;;"y", 1, 0, -10000, 10000, 0
+	int16_t[SCRIPT_CURVE_12] scriptCurve8Bins;;"x", 1, 0, -40, 250, 0
+	int16_t[SCRIPT_CURVE_12] scriptCurve8;;"y", 1, 0, -40, 250, 0
 
 	float[BARO_CORR_SIZE] baroCorrPressureBins;;"SPECIAL_CASE_PRESSURE", 1, 0, 0, 120, 2
     float[BARO_CORR_SIZE] baroCorrRpmBins;;"RPM", 1, 0, 0, 18000, 0
