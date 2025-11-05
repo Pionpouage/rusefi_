@@ -1961,16 +1961,16 @@ uint8_t[TORQUE_CURVE_SIZE x TORQUE_CURVE_RPM_SIZE] autoscale torqueTable;;"Nm", 
 	float[SCRIPT_CURVE_16] scriptCurve1;;"y", 1, 0, -10000, 10000, 2
 	float[SCRIPT_CURVE_16] scriptCurve2Bins;;"x", 1, 0, -10000, 10000, 2
 	float[SCRIPT_CURVE_16] scriptCurve2;;"y", 1, 0, -10000, 10000, 2
-	float[SCRIPT_CURVE_16] scriptCurve3Bins;;"x", 1, 0, -10000, 10000, 2
-	float[SCRIPT_CURVE_16] scriptCurve3;;"y", 1, 0, -10000, 10000, 2
-	float[SCRIPT_CURVE_16] scriptCurve4Bins;;"x", 1, 0, -10000, 10000, 2
-	float[SCRIPT_CURVE_16] scriptCurve4;;"y", 1, 0, -10000, 10000, 2
-	float[SCRIPT_CURVE_16] scriptCurve5Bins;;"x", 1, 0, -10000, 10000, 2
-	float[SCRIPT_CURVE_16] scriptCurve5;;"y", 1, 0, -10000, 10000, 2
-	float[SCRIPT_CURVE_8] scriptCurve6Bins;;"x", 1, 0, -10000, 10000, 1
-	float[SCRIPT_CURVE_8] scriptCurve6;;"y", 1, 0, -10000, 10000, 1
-	float[SCRIPT_CURVE_8] scriptCurve7Bins;;"x", 1, 0, -10000, 10000, 1
-	float[SCRIPT_CURVE_8] scriptCurve7;;"y", 1, 0, -10000, 10000, 1
+	float[SCRIPT_CURVE_8] scriptCurve3Bins;;"x", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_8] scriptCurve3;;"y", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_8] scriptCurve4Bins;;"x", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_8] scriptCurve4;;"y", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_8] scriptCurve5Bins;;"x", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_8] scriptCurve5;;"y", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve6Bins;;"x", 1, 0, -10000, 10000, 1
+	float[SCRIPT_CURVE_16] scriptCurve6;;"y", 1, 0, -10000, 10000, 1
+	float[SCRIPT_CURVE_16] scriptCurve7Bins;;"x", 1, 0, -10000, 10000, 1
+	float[SCRIPT_CURVE_16] scriptCurve7;;"y", 1, 0, -10000, 10000, 1
 	float[SCRIPT_CURVE_12] scriptCurve8Bins;;"x", 1, 0, -10000, 10000, 0
 	float[SCRIPT_CURVE_12] scriptCurve8;;"y", 1, 0, -10000, 10000, 0
 

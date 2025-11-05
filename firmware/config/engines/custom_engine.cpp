@@ -516,8 +516,8 @@ void proteusLuaDemo() {
 	setLinearCurve(config->scriptCurve2Bins, 0, 8000, 1);
 	setLinearCurve(config->scriptCurve2, 0, 100, 1);
 
-	copyArray(config->scriptCurve6Bins, defaultBiasBins);
-	copyArray(config->scriptCurve6, defaultBiasValues);
+	copyArray(config->scriptCurve3Bins, defaultBiasBins);
+	copyArray(config->scriptCurve3, defaultBiasValues);
 
 	engineConfiguration->auxAnalogInputs[0] = PROTEUS_IN_ANALOG_VOLT_10;
 	engineConfiguration->afr.hwChannel = EFI_ADC_NONE;
