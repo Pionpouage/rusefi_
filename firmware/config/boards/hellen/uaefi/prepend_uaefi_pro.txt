@@ -30,5 +30,5 @@
 #define ts_show_vvt_frequency true
 
 #define ts_show_vr_threshold_all true
-#define ts_show_vr_threshold_2 true
+#define ts_show_vr_threshold_2 false
 #define ts_show_alternator false
