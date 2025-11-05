@@ -14,7 +14,7 @@
 #define IAT_IGN_CORR_COUNT 4
 #define IAT_IGN_CORR_LOAD_COUNT 4
 
-#define ETB_BIAS_CURVE_LENGTH 16
+#define ETB_BIAS_CURVE_LENGTH 8
 
 #define ts_cic_idle true
 
