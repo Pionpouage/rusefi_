@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <msq xmlns="http://www.msefi.com/:msq">
     <page/>
-    <page number="0" size="22860">
+    <page number="0" size="23196">
         <constant name="accelEnrichmentMode">"MS Adder"</constant>
         <constant name="accelerometerCsPin">"NONE"</constant>
         <constant name="accelerometerCsPinMode">"default"</constant>
@@ -560,7 +560,7 @@
         <constant digits="0" name="brakeMeanEffectivePressureDifferential" units="">0.0</constant>
         <constant name="brakePedalPin">"NONE"</constant>
         <constant name="brakePedalPinMode">"PULLUP"</constant>
-        <constant digits="0" name="byFirmwareVersion" units="index">2.0251104E7</constant>
+        <constant digits="0" name="byFirmwareVersion" units="index">2.0251105E7</constant>
         <constant digits="0" name="calibrationBirthday" units="">2.0251105E7</constant>
         <constant digits="0" name="camDecoder2jzPosition" units="angle">95.0</constant>
         <constant digits="0" name="camDecoder2jzPrecision" units="">40.0</constant>
@@ -693,7 +693,7 @@
          100.0
          110.0
 </constant>
-        <constant cols="1" digits="2" name="cltIdleCorrBins" rows="8" units="C">
+        <constant cols="1" digits="1" name="cltIdleCorrBins" rows="8" units="C">
          -40.0
          -10.0
          10.0
@@ -3061,7 +3061,7 @@ end</constant>
         <constant digits="1" name="rpmSoftLimitTimingRetard" units="deg">4.0</constant>
         <constant digits="0" name="rpmSoftLimitWindowSize" units="RPM">200.0</constant>
         <constant name="rusefiVerbose29b">"11 bit"</constant>
-        <constant cols="1" digits="3" name="scriptCurve1" rows="16" units="y">
+        <constant cols="1" digits="2" name="scriptCurve1" rows="16" units="y">
          0.0
          7.0
          13.0
@@ -3079,7 +3079,7 @@ end</constant>
          93.0
          100.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve1Bins" rows="16" units="x">
+        <constant cols="1" digits="2" name="scriptCurve1Bins" rows="16" units="x">
          0.0
          7.0
          13.0
@@ -3097,7 +3097,7 @@ end</constant>
          93.0
          100.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve2" rows="16" units="y">
+        <constant cols="1" digits="2" name="scriptCurve2" rows="16" units="y">
          30.0
          39.0
          49.0
@@ -3115,7 +3115,7 @@ end</constant>
          161.0
          170.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve2Bins" rows="16" units="x">
+        <constant cols="1" digits="2" name="scriptCurve2Bins" rows="16" units="x">
          0.0
          7.0
          13.0
@@ -3133,7 +3133,15 @@ end</constant>
          93.0
          100.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve3" rows="8" units="y">
+        <constant cols="1" digits="2" name="scriptCurve3" rows="16" units="y">
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
          0.0
          0.0
          0.0
@@ -3143,7 +3151,107 @@ end</constant>
          0.0
          0.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve3Bins" rows="8" units="x">
+        <constant cols="1" digits="2" name="scriptCurve3Bins" rows="16" units="x">
+         0.0
+         7.0
+         13.0
+         20.0
+         27.0
+         33.0
+         40.0
+         47.0
+         53.0
+         60.0
+         67.0
+         73.0
+         80.0
+         87.0
+         93.0
+         100.0
+</constant>
+        <constant cols="1" digits="2" name="scriptCurve4" rows="16" units="y">
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+</constant>
+        <constant cols="1" digits="2" name="scriptCurve4Bins" rows="16" units="x">
+         0.0
+         7.0
+         13.0
+         20.0
+         27.0
+         33.0
+         40.0
+         47.0
+         53.0
+         60.0
+         67.0
+         73.0
+         80.0
+         87.0
+         93.0
+         100.0
+</constant>
+        <constant cols="1" digits="2" name="scriptCurve5" rows="16" units="y">
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+</constant>
+        <constant cols="1" digits="2" name="scriptCurve5Bins" rows="16" units="x">
+         0.0
+         7.0
+         13.0
+         20.0
+         27.0
+         33.0
+         40.0
+         47.0
+         53.0
+         60.0
+         67.0
+         73.0
+         80.0
+         87.0
+         93.0
+         100.0
+</constant>
+        <constant cols="1" digits="1" name="scriptCurve6" rows="8" units="y">
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+</constant>
+        <constant cols="1" digits="1" name="scriptCurve6Bins" rows="8" units="x">
          0.0
          14.0
          29.0
@@ -3153,7 +3261,7 @@ end</constant>
          86.0
          100.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve4" rows="8" units="y">
+        <constant cols="1" digits="1" name="scriptCurve7" rows="8" units="y">
          0.0
          0.0
          0.0
@@ -3163,17 +3271,7 @@ end</constant>
          0.0
          0.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve4Bins" rows="8" units="x">
-         0.0
-         14.0
-         29.0
-         43.0
-         57.0
-         71.0
-         86.0
-         100.0
-</constant>
-        <constant cols="1" digits="3" name="scriptCurve5" rows="8" units="y">
+        <constant cols="1" digits="1" name="scriptCurve7Bins" rows="8" units="x">
          0.0
          0.0
          0.0
@@ -3183,17 +3281,11 @@ end</constant>
          0.0
          0.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve5Bins" rows="8" units="x">
+        <constant cols="1" digits="0" name="scriptCurve8" rows="12" units="y">
          0.0
-         14.0
-         29.0
-         43.0
-         57.0
-         71.0
-         86.0
-         100.0
-</constant>
-        <constant cols="1" digits="3" name="scriptCurve6" rows="8" units="y">
+         0.0
+         0.0
+         0.0
          0.0
          0.0
          0.0
@@ -3203,15 +3295,19 @@ end</constant>
          0.0
          0.0
 </constant>
-        <constant cols="1" digits="3" name="scriptCurve6Bins" rows="8" units="x">
+        <constant cols="1" digits="0" name="scriptCurve8Bins" rows="12" units="x">
          0.0
-         14.0
-         29.0
-         43.0
-         57.0
-         71.0
-         86.0
-         100.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
+         0.0
 </constant>
         <constant digits="2" name="scriptSetting1" units="">0.0</constant>
         <constant digits="2" name="scriptSetting2" units="">0.0</constant>
@@ -4936,7 +5032,7 @@ end</constant>
 </constant>
         <constant name="yesUnderstandLocking">"no"</constant>
     </page>
-    <versionInfo firmwareInfo="20251103" nPages="1" signature="rusEFI master.2025.11.05.f407-discovery.145351258" version="5.0"/>
+    <versionInfo firmwareInfo="20251103" nPages="1" signature="rusEFI master.2025.11.05.f407-discovery.4208567875" version="5.0"/>
     <bibliography author="rusEFI 20251103" writeDate="date"/>
     <settings/>
     <userComments/>
