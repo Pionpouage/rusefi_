@@ -288,7 +288,7 @@
 #define CLT_CURVE_SIZE 16
 #define CLT_FUEL_CURVE_SIZE 16
 #define CLT_IDLE_TABLE_CLT_SIZE 8
-#define CLT_IDLE_TABLE_RPM_SIZE 2
+#define CLT_IDLE_TABLE_RPM_SIZE 8
 #define CLT_LIMITER_CURVE_SIZE 4
 #define CLT_TIMING_LOAD_AXIS_SIZE 5
 #define CLT_TIMING_TEMP_AXIS_SIZE 5
@@ -608,7 +608,7 @@
 #define engineSyncCam_enum "Intake First Bank", "Exhaust First Bank", "Intake Second Bank", "Exhaust Second Bank"
 #define ETB2_TRIM_RPM_SIZE 6
 #define ETB2_TRIM_SIZE 6
-#define ETB_BIAS_CURVE_LENGTH 8
+#define ETB_BIAS_CURVE_LENGTH 16
 #define ETB_COUNT 2
 #define ETB_HW_MAX_FREQUENCY 3000
 #define FIELD_DISPLACEMENT displacement
@@ -1267,9 +1267,9 @@
 #define HW_EVENT_TYPES 4
 #define IAC_PID_MULT_RPM_SIZE 8
 #define IAC_PID_MULT_SIZE 8
-#define IAT_CURVE_SIZE 16
-#define IAT_IGN_CORR_COUNT 8
-#define IAT_IGN_CORR_LOAD_COUNT 8
+#define IAT_CURVE_SIZE 8
+#define IAT_IGN_CORR_COUNT 4
+#define IAT_IGN_CORR_LOAD_COUNT 4
 #define IDLE_ADVANCE_CURVE_SIZE 8
 #define idle_hardware_s_size 12
 #define idle_mode_e_auto_enum 0="IM_AUTO",1="IM_MANUAL"
@@ -1452,12 +1452,12 @@
 #define PACK_PERCENT_BYTE_MULT 100.0
 #define PAGE_SIZE_1 256
 #define PAGE_SIZE_2 2048
-#define PEDAL_TO_TPS_RPM_SIZE 8
-#define PEDAL_TO_TPS_SIZE 8
+#define PEDAL_TO_TPS_RPM_SIZE 10
+#define PEDAL_TO_TPS_SIZE 10
 #define pedalSensor_NAME "Accelerator pedal"
 #define pedalToTpsTbl_NAME "ETB pedal target"
 #define PERCENT_TRIM_BYTE_PACKING_DIV 0.02
-#define persistent_config_s_size 63872
+#define persistent_config_s_size 64556
 #define pid_s_size 20
 #define pin_input_mode_e_auto_enum 0="PI_DEFAULT",4="PI_INVERTED_DEFAULT",6="PI_INVERTED_PULLDOWN",5="PI_INVERTED_PULLUP",2="PI_PULLDOWN",1="PI_PULLUP"
 #define pin_input_mode_e_PI_DEFAULT 0
@@ -1494,6 +1494,7 @@
 #define REBOOT_COMMAND 0xbb
 #define RPM_AS_BYTE_LIMIT 25000
 #define RPM_AS_BYTE_SCALE 100
+#define SCRIPT_CURVE_12 12
 #define SCRIPT_CURVE_16 16
 #define SCRIPT_CURVE_8 8
 #define SCRIPT_CURVE_COUNT 6
@@ -1538,7 +1539,7 @@
 #define SentInput_NONE 0
 #define show_tcu_gauges false
 #define show_vvt_output_pin true
-#define SIGNATURE_HASH 3056442751
+#define SIGNATURE_HASH 1763047669
 #define SIMULATOR_TUNE_BIN_FILE_NAME "generated/simulator_tune_image.bin"
 #define SIMULATOR_TUNE_BIN_FILE_NAME_PREFIX "generated/simulator_tune_image"
 #define SIMULATOR_TUNE_BIN_FILE_NAME_SUFFIX ".bin"
@@ -1618,7 +1619,7 @@
 #define torqueReductionActivationMode_e_TORQUE_REDUCTION_BUTTON 0
 #define torqueReductionActivationMode_e_TORQUE_REDUCTION_CLUTCH_DOWN_SWITCH 2
 #define torqueReductionActivationMode_e_TORQUE_REDUCTION_CLUTCH_UP_SWITCH 3
-#define TOTAL_CONFIG_SIZE 63872
+#define TOTAL_CONFIG_SIZE 64556
 #define TPS_2_BYTE_PACKING_MULT 100
 #define TPS_PPS_TOO_HIGH_THRESHOLD 110
 #define TPS_PPS_TOO_LOW_THRESHOLD -10
@@ -1792,7 +1793,7 @@
 #define TS_BURN_COMMAND_char B
 #define TS_CHUNK_WRITE_COMMAND 'C'
 #define TS_CHUNK_WRITE_COMMAND_char C
-#define ts_cic_idle false
+#define ts_cic_idle true
 #define ts_command_e_TS_BENCH_CATEGORY 22
 #define ts_command_e_TS_BOARD_ACTION 29
 #define ts_command_e_TS_BOARD_ACTION2 26
@@ -1892,7 +1893,7 @@
 #define ts_show_adv_wall_wetting true
 #define ts_show_AdvanceCorrectionsForCranking true
 #define ts_show_air_conditioning true
-#define ts_show_alternator true
+#define ts_show_alternator false
 #define ts_show_analog_diag true
 #define ts_show_analog_divider false
 #define ts_show_analog_ego true
@@ -1942,7 +1943,7 @@
 #define ts_show_cylinder_trim_1 true
 #define ts_show_cylinder_trim_2 true
 #define ts_show_dc_hardware true
-#define ts_show_debug_mode false
+#define ts_show_debug_mode true
 #define ts_show_disable_etb false
 #define ts_show_ecu_stimulator true
 #define ts_show_ego2 true
@@ -2016,7 +2017,7 @@
 #define ts_show_ignitionMode true
 #define ts_show_ignitionOutputs true
 #define ts_show_ignitionPinMode true
-#define ts_show_inj_diag false
+#define ts_show_inj_diag true
 #define ts_show_injection_hardware true
 #define ts_show_injection_mode true
 #define ts_show_injection_phase true
@@ -2108,18 +2109,19 @@
 #define ts_show_veBlends4 true
 #define ts_show_vehicle_name true
 #define ts_show_vehicle_speed_sensor true
-#define ts_show_virtual_dyno false
+#define ts_show_virtual_dyno true
 #define ts_show_vr_threshold_2 false
 #define ts_show_vr_threshold_all true
 #define ts_show_vr_threshold_pins false
 #define ts_show_vvl_control true
+#define ts_show_vvt_frequency true
 #define ts_show_vvt_output true
 #define ts_show_vvt_output_pin true
 #define ts_show_wall_wetting true
 #define ts_show_wastegate_sensor true
 #define ts_show_wbo_canbus_index true
 #define ts_show_wbo_canbus_set_index true
-#define TS_SIGNATURE "rusEFI master.2025.11.05.uaefi_pro.3056442751"
+#define TS_SIGNATURE "rusEFI master.2025.11.05.uaefi_pro.1763047669"
 #define TS_SIMULATE_CAN '>'
 #define TS_SIMULATE_CAN_char >
 #define TS_TEST_COMMAND 't'
@@ -2224,8 +2226,8 @@
 #define vvt_mode_e_VVT_UNUSED_17 17
 #define VVT_OFFSET_1_1_NAME "VVT offset bank 1 intake"
 #define VVT_OUTPUTS_NAME "VVT outputs and PID"
-#define VVT_TABLE_RPM_SIZE 8
-#define VVT_TABLE_SIZE 8
+#define VVT_TABLE_RPM_SIZE 12
+#define VVT_TABLE_SIZE 12
 #define VVT_TRACKING_LENGTH 4
 #define WARNING_BUFFER_SIZE 120
 #define wbo_s_size 8
