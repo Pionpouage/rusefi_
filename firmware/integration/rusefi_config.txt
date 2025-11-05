@@ -289,6 +289,7 @@ struct_no_prefix engine_configuration_s
 #define TABLE_4_LOAD_SIZE 8
 
 #define SCRIPT_CURVE_8 8
+#define SCRIPT_CURVE_12 12
 #define SCRIPT_CURVE_16 16
 
 #define TPS_TPS_ACCEL_TABLE 8
@@ -1956,18 +1957,22 @@ uint8_t[TORQUE_CURVE_SIZE x TORQUE_CURVE_RPM_SIZE] autoscale torqueTable;;"Nm", 
     uint8_t[CLT_TIMING_LOAD_AXIS_SIZE] autoscale ignitionCltCorrLoadBins;;"Load", 5, 0, 0,  @@MAP_UPPER_LIMIT@@, 0
 
 
-	float[SCRIPT_CURVE_16] scriptCurve1Bins;;"x", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_16] scriptCurve1;;"y", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_16] scriptCurve2Bins;;"x", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_16] scriptCurve2;;"y", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_8] scriptCurve3Bins;;"x", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_8] scriptCurve3;;"y", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_8] scriptCurve4Bins;;"x", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_8] scriptCurve4;;"y", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_8] scriptCurve5Bins;;"x", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_8] scriptCurve5;;"y", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_8] scriptCurve6Bins;;"x", 1, 0, -10000, 10000, 3
-	float[SCRIPT_CURVE_8] scriptCurve6;;"y", 1, 0, -10000, 10000, 3
+	float[SCRIPT_CURVE_16] scriptCurve1Bins;;"x", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve1;;"y", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve2Bins;;"x", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve2;;"y", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve3Bins;;"x", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve3;;"y", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve4Bins;;"x", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve4;;"y", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve5Bins;;"x", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_16] scriptCurve5;;"y", 1, 0, -10000, 10000, 2
+	float[SCRIPT_CURVE_8] scriptCurve6Bins;;"x", 1, 0, -10000, 10000, 1
+	float[SCRIPT_CURVE_8] scriptCurve6;;"y", 1, 0, -10000, 10000, 1
+	float[SCRIPT_CURVE_8] scriptCurve7Bins;;"x", 1, 0, -10000, 10000, 1
+	float[SCRIPT_CURVE_8] scriptCurve7;;"y", 1, 0, -10000, 10000, 1
+	uint8_t[SCRIPT_CURVE_12] scriptCurve8Bins;;"x", 1, 0, -10000, 10000, 0
+	uint8_t[SCRIPT_CURVE_12] scriptCurve8;;"y", 1, 0, -10000, 10000, 0
 
 	float[BARO_CORR_SIZE] baroCorrPressureBins;;"SPECIAL_CASE_PRESSURE", 1, 0, 0, 120, 2
     float[BARO_CORR_SIZE] baroCorrRpmBins;;"RPM", 1, 0, 0, 18000, 0
@@ -2027,7 +2032,7 @@ float[IAT_CURVE_SIZE] iatFuelCorr;;"ratio", 1, 0, 0, 5, 2
 
 #define CLT_IDLE_TABLE_CLT_SIZE 8
 #define CLT_IDLE_TABLE_RPM_SIZE 2
-float[CLT_IDLE_TABLE_CLT_SIZE] cltIdleCorrBins;CLT-based idle position for simple manual idle controller;"SPECIAL_CASE_TEMPERATURE", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 2
+uint8_t[CLT_IDLE_TABLE_CLT_SIZE] cltIdleCorrBins;CLT-based idle position for simple manual idle controller;"SPECIAL_CASE_TEMPERATURE", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 0
 float[CLT_IDLE_TABLE_RPM_SIZE x CLT_IDLE_TABLE_CLT_SIZE] cltIdleCorrTable;    CLT-based idle position for simple manual idle controller;"%", 1, 0, 0, 100, 2
 uint8_t[CLT_IDLE_TABLE_RPM_SIZE] autoscale rpmIdleCorrBins;;"Target RPM", @@RPM_AS_BYTE_SCALE@@, 0, 0, @@RPM_AS_BYTE_LIMIT@@, 0
 

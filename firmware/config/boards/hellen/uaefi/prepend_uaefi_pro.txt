@@ -1,1 +1,34 @@
 #define LUA_SCRIPT_SIZE 48000
+
+#define VVT_TABLE_SIZE 12
+#define VVT_TABLE_RPM_SIZE 12
+
+#define PEDAL_TO_TPS_SIZE 10
+#define PEDAL_TO_TPS_RPM_SIZE 10
+
+#define IAT_CURVE_SIZE 8
+
+#define CLT_IDLE_TABLE_CLT_SIZE 8
+#define CLT_IDLE_TABLE_RPM_SIZE 8
+
+#define IAT_IGN_CORR_COUNT 4
+#define IAT_IGN_CORR_LOAD_COUNT 4
+
+#define ETB_BIAS_CURVE_LENGTH 16
+
+#define ts_cic_idle true
+
+#define ts_show_tcu false
+#define ts_show_gdi false
+#define show_tcu_gauges false
+
+#define ts_show_virtual_dyno true
+#define ts_show_debug_mode true
+
+#define ts_show_inj_diag true
+
+#define ts_show_vvt_frequency true
+
+#define ts_show_vr_threshold_all true
+#define ts_show_vr_threshold_2 true
+#define ts_show_alternator false
