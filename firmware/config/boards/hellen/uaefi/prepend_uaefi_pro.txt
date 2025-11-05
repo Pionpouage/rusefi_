@@ -26,6 +26,7 @@
 #define ts_show_debug_mode true
 
 #define ts_show_inj_diag true
+#define ts_show_analog_diag true
 
 #define ts_show_vvt_frequency true
 
