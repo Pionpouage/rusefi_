@@ -42,3 +42,4 @@ artifacts
 firmware/controllers/can/wideband_firmware
 firmware/controllers/can/wideband_firmware
 .vscode/settings.json
+act.exe

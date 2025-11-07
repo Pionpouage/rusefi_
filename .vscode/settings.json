@@ -38,4 +38,8 @@
 	"Lua.diagnostics.disable": [
 		"lowercase-global"
 	],
+	"cmake.sourceDirectory": "C:/Users/Ryzen/Desktop/307_uaEFI/pionpouageEFI/rusefi/misc/libopenblt_jni",
+	"github-actions.workflows.pinned.workflows": [
+		".github/workflows/build-firmware.yaml"
+	],
 }

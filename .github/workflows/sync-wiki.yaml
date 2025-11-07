@@ -52,11 +52,3 @@ jobs:
         git checkout -- .github/workflows/sync-wiki2.yaml .github/workflows/sync-wiki3.yaml
         # commit the merge
         git commit -m "merge rusEFI wiki"
-
-    - name: Push changes to rusefi_documentation technical wiki
-      uses: ad-m/github-push-action@master
-      if: ${{ env.skip != 'true' }}
-      with:
-        repository: rusefi/rusefi_documentation
-        github_token: ${{ secrets.ACCESS_TOKEN }}
-        branch: master
