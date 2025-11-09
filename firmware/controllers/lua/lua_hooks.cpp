@@ -974,6 +974,13 @@ extern int luaCommandCounters[LUA_BUTTON_COUNT];
 
 		return 0;
 	});
+	lua_register(lState, "setEtbCruiseAdd", [](lua_State* l) {
+		auto cruiseLuaAdjustment = luaL_checknumber(l, 1);
+
+		setEtbCruiseLuaAdjustment(cruiseLuaAdjustment);
+
+		return 0;
+	});
 	lua_register(lState, "setEwgAdd", [](lua_State* l) {
 		auto luaAdjustment = luaL_checknumber(l, 1);
 

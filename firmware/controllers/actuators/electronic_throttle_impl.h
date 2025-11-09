@@ -81,6 +81,9 @@ public:
 	void setLuaAdjustment(percent_t adjustment) override;
 	float getLuaAdjustment() const;
 
+	void setCruiseLuaAdjustment(percent_t cruiseAdjustment) override;
+	float getCruiseLuaAdjustment() const;
+
 	float prevOutput = 0;
 
 protected:
@@ -130,6 +133,7 @@ private:
 #endif
 
 	Timer m_luaAdjustmentTimer;
+	Timer m_cruiseLuaAdjustmentTimer;
 
 	efitimeus_t lastTickUs;
 };

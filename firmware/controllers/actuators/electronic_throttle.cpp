@@ -333,7 +333,7 @@ expected<percent_t> EtbController::getSetpointEtb() {
 	// 100% target from table -> 100% target position
 	targetWithIdlePosition = interpolateClamped(0, etbIdleAddition, 100, 100, etbCurrentTarget);
 
-	percent_t targetPosition = targetWithIdlePosition + getLuaAdjustment();
+	percent_t targetPosition = std::max(targetWithIdlePosition + getLuaAdjustment(), getCruiseLuaAdjustment());
 	// just an additional logging data point
 	adjustedEtbTarget = targetPosition;
 
@@ -386,6 +386,11 @@ void EtbController::setLuaAdjustment(float adjustment) {
 	m_luaAdjustmentTimer.reset();
 }
 
+void EtbController::setCruiseLuaAdjustment(float cruiseAdjustment) {
+	cruiseLuaAdjustment = cruiseAdjustment;
+	m_cruiseLuaAdjustmentTimer.reset();
+}
+
 /**
  * positive adjustment opens TPS, negative closes TPS
  */
@@ -396,6 +401,16 @@ float EtbController::getLuaAdjustment() const {
 		return 0;
 	} else {
 		return luaAdjustment;
+	}
+}
+
+float EtbController::getCruiseLuaAdjustment() const {
+	// If the lua position hasn't been set in 0.1 second, don't adjust!
+	// This avoids a stuck throttle due to hung/rogue/etc Lua script
+	if (m_cruiseLuaAdjustmentTimer.getElapsedSeconds() > 0.1f) {
+		return 0;
+	} else {
+		return cruiseLuaAdjustment;
 	}
 }
 
@@ -1020,6 +1035,20 @@ void setEtbLuaAdjustment(percent_t pos) {
 			// try to adjust all ETB
 			if (etb->getFunction() == DC_Throttle1 || etb->getFunction() == DC_Throttle2) {
 				etb->setLuaAdjustment(pos);
+			}
+		}
+	}
+}
+
+void setEtbCruiseLuaAdjustment(percent_t pos) {
+	for (int i = 0; i < ETB_COUNT; i++) {
+		/* TODO: use from engine, add getFunction() to base class */
+		//if (auto etb = engine->etbControllers[i]) {
+		if (auto etb = etbControllers[i]) {
+			assertNotNullVoid(etb);
+			// try to adjust all ETB
+			if (etb->getFunction() == DC_Throttle1 || etb->getFunction() == DC_Throttle2) {
+				etb->setCruiseLuaAdjustment(pos);
 			}
 		}
 	}

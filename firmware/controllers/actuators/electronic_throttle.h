@@ -17,6 +17,7 @@ void doInitElectronicThrottle(bool isStartupInit);
 void setEtbIdlePosition(percent_t pos);
 void setEtbWastegatePosition(percent_t pos);
 void setEtbLuaAdjustment(percent_t adjustment);
+void setEtbCruiseLuaAdjustment(percent_t cruiseAdjustment);
 void setEwgLuaAdjustment(percent_t pos);
 void setHitachiEtbCalibration();
 
@@ -77,4 +78,5 @@ public:
 	virtual const pid_state_s& getPidState() const = 0;
   virtual float getCurrentTarget() const = 0;
 	virtual void setLuaAdjustment(percent_t adjustment) = 0;
+	virtual void setCruiseLuaAdjustment(percent_t cruiseAdjustment) = 0;
 };
