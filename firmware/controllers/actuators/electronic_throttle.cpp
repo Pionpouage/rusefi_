@@ -208,6 +208,9 @@ bool EtbController::init(dc_function_e function, DcMotor *motor, pid_s *pidParam
 		m_pid.iTermMax = 30;
 	}
 #endif
+	// todo: move this to pid_s one day
+	m_pid.antiwindupFreq = engineConfiguration->etb_antiwindupFreq;
+	m_pid.derivativeFilterLoss = engineConfiguration->etb_derivativeFilterLoss;
 
 	// Ignore 3% position error before complaining
 	m_targetErrorAccumulator.init(3.0f, etbPeriodSeconds);

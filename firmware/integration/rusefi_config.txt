@@ -1490,6 +1490,9 @@ float tChargeAirDecrLimit;Maximum allowed rate of decrease allowed for the estim
 	int16_t etb_iTermMin;iTerm min value;"", 1, 0, -30000, 30000, 0
 	int16_t etb_iTermMax;iTerm max value;"", 1, 0, -30000, 30000, 0
 
+	float etb_antiwindupFreq;0.1 is a good default value;"x", 1, 0, -1000000, 1000000, 4
+	float etb_derivativeFilterLoss;0.1 is a good default value;"x", 1, 0, -1000000, 1000000, 4
+
 	pid_s idleTimingPid;See useIdleTimingPidControl
 	float idleTimingSoftEntryTime;When entering idle, and the PID settings are aggressive, it's good to make a soft entry upon entering closed loop;"", 1, 0, 0, 100, 1
 

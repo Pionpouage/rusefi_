@@ -96,7 +96,7 @@ private:
 	dc_function_e m_function = DC_None;
 	SensorType m_positionSensor = SensorType::Invalid;
 	DcMotor *m_motor = nullptr;
-	Pid m_pid;
+	PidIndustrial m_pid;
 	bool m_shouldResetPid = false;
 
 	ErrorAccumulator m_targetErrorAccumulator;
