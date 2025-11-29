@@ -6,6 +6,7 @@ struct_no_prefix electronic_throttle_s
 	float boardEtbAdjustment
 	float luaAdjustment;"ETB: luaAdjustment";"%", 1,0, 0,3, 2,@@GAUGE_CATEGORY_ETB@@
 	float cruiseLuaAdjustment;"ETB: cruiseLuaAdjustment";"%", 1,0, 0,3, 2,@@GAUGE_CATEGORY_ETB@@
+	float limiterLuaAdjustment;"ETB: limiterLuaAdjustment";"%", 1,0, 0,3, 2,@@GAUGE_CATEGORY_ETB@@
 
 	float m_wastegatePosition;"DC: wastegatePosition";"%", 1,0, 0,3, 2,@@GAUGE_CATEGORY_ETB@@
 
@@ -16,6 +17,7 @@ struct_no_prefix electronic_throttle_s
 	percent_t etbFeedForward
 	float integralError;Integral error; "", 1, 0, 0, 100, 3,@@GAUGE_CATEGORY_ETB@@
 	float etbCurrentTarget;ETB: target for current pedal;"%", 1, 0, -10000, 10000, 3
+	float etbTargetWithCruise;ETB: target with CC;"%", 1, 0, -10000, 10000, 3
 	int16_t autoscale m_adjustedTarget;Adjusted target;"%", 0.01, 0, -100, 100, 2
 
 	bit etbRevLimitActive

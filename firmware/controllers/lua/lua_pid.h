@@ -17,8 +17,15 @@ struct LuaPid final {
 		m_params.minValue = min;
 		m_params.maxValue = max;
 
+		m_pid.iTermMin = -1000000.0;
+		m_pid.iTermMax = 1000000.0;
+
 		if (m_params.minValue >= m_params.maxValue) {
 		  criticalError("Lua: minValue %d/maxValue %d", m_params.minValue, m_params.maxValue);
+		}
+    
+		if (m_pid.iTermMin >= m_pid.iTermMax) {
+		  criticalError("Lua: iTermMinValue %d/iTermMaxValue %d", m_pid.iTermMin, m_pid.iTermMax);
 		}
 
 		m_lastUpdate.reset();
@@ -37,6 +44,16 @@ struct LuaPid final {
 
 	void setOffset(float offset) {
 		m_params.offset = offset;
+		reset();
+	}
+
+	void setItermMin(float iTermMin) {
+		m_pid.iTermMin = iTermMin;
+		reset();
+	}
+
+	void setItermMax(float iTermMax) {
+		m_pid.iTermMax = iTermMax;
 		reset();
 	}
 
@@ -66,8 +83,15 @@ struct LuaIndustrialPid final {
 		m_params.minValue = min;
 		m_params.maxValue = max;
 
+		m_pid.iTermMin = -1000000.0;
+		m_pid.iTermMax = 1000000.0;
+
 		if (m_params.minValue >= m_params.maxValue) {
 		  criticalError("Lua: minValue %d/maxValue %d", m_params.minValue, m_params.maxValue);
+		}
+
+		if (m_pid.iTermMin >= m_pid.iTermMax) {
+		  criticalError("Lua: iTermMinValue %d/iTermMaxValue %d", m_pid.iTermMin, m_pid.iTermMax);
 		}
 
 		m_lastUpdate.reset();
@@ -86,6 +110,16 @@ struct LuaIndustrialPid final {
 
 	void setOffset(float offset) {
 		m_params.offset = offset;
+		reset();
+	}
+
+	void setItermMin(float iTermMin) {
+		m_pid.iTermMin = iTermMin;
+		reset();
+	}
+
+	void setItermMax(float iTermMax) {
+		m_pid.iTermMax = iTermMax;
 		reset();
 	}
 

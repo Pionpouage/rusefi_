@@ -84,6 +84,9 @@ public:
 	void setCruiseLuaAdjustment(percent_t cruiseAdjustment) override;
 	float getCruiseLuaAdjustment() const;
 
+	void setLimiterLuaAdjustment(percent_t limiterAdjustment) override;
+	float getLimiterLuaAdjustment() const;
+
 	float prevOutput = 0;
 
 protected:
@@ -134,6 +137,7 @@ private:
 
 	Timer m_luaAdjustmentTimer;
 	Timer m_cruiseLuaAdjustmentTimer;
+	Timer m_limiterLuaAdjustmentTimer;
 
 	efitimeus_t lastTickUs;
 };

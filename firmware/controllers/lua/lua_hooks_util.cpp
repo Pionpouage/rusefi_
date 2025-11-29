@@ -35,10 +35,24 @@ static int lua_interpolate(lua_State* l) {
 	return 1;
 }
 
+static int lua_interpolateClamped(lua_State* l) {
+	auto x1 = luaL_checknumber(l, 1);
+	auto y1 = luaL_checknumber(l, 2);
+	auto x2 = luaL_checknumber(l, 3);
+	auto y2 = luaL_checknumber(l, 4);
+	auto x = luaL_checknumber(l, 5);
+
+	auto result = interpolateClampedMsg("lua", x1, y1, x2, y2, x);
+
+	lua_pushnumber(l, result);
+	return 1;
+}
+
 
 void configureRusefiLuaUtilHooks(lua_State* lState) {
 	lua_register(lState, "print", lua_efi_print);
 	lua_register(lState, "interpolate", lua_interpolate);
+	lua_register(lState, "interpolateClamped", lua_interpolateClamped);
 
 	lua_register(lState, "findCurveIndex", [](lua_State* l) {
 		auto name = luaL_checklstring(l, 1, nullptr);

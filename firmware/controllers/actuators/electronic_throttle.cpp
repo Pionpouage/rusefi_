@@ -202,15 +202,17 @@ bool EtbController::init(dc_function_e function, DcMotor *motor, pid_s *pidParam
 	if (isEtbMode()) {
 		m_pid.iTermMin = engineConfiguration->etb_iTermMin;
 		m_pid.iTermMax = engineConfiguration->etb_iTermMax;
+
+	  m_pid.antiwindupFreq = engineConfiguration->etb_antiwindupFreq;
+	  m_pid.derivativeFilterLoss = engineConfiguration->etb_derivativeFilterLoss;
 	} else {
 		// Some defaults from setDefaultEtbParameters(), find better values for EWG and Idle or add config options
 		m_pid.iTermMin = -30;
 		m_pid.iTermMax = 30;
+	  m_pid.antiwindupFreq = 0.0;
+	  m_pid.derivativeFilterLoss = 0.0;
 	}
 #endif
-	// todo: move this to pid_s one day
-	m_pid.antiwindupFreq = engineConfiguration->etb_antiwindupFreq;
-	m_pid.derivativeFilterLoss = engineConfiguration->etb_derivativeFilterLoss;
 
 	// Ignore 3% position error before complaining
 	m_targetErrorAccumulator.init(3.0f, etbPeriodSeconds);
@@ -228,6 +230,7 @@ void EtbController::reset(const char *reason) {
 	m_shouldResetPid = true;
 	etbTpsErrorCounter = 0;
 	etbPpsErrorCounter = 0;
+	limiterLuaAdjustment = 100;
 #if EFI_UNIT_TEST
 	ebtResetCounter++;
 #endif // EFI_UNIT_TEST
@@ -325,7 +328,8 @@ expected<percent_t> EtbController::getSetpointEtb() {
 	float rpm = Sensor::getOrZero(SensorType::Rpm);
   percent_t preBoard = m_pedalProvider->getValue(rpm, sanitizedPedal);
 	etbCurrentTarget = boardAdjustEtbTarget(preBoard);
-	boardEtbAdjustment = etbCurrentTarget - preBoard;
+  etbTargetWithCruise = clampF(getCruiseLuaAdjustment(), etbTargetWithCruise, getLimiterLuaAdjustment());
+	boardEtbAdjustment = etbTargetWithCruise - preBoard;
 
 	percent_t etbIdlePosition = clampPercentValue(m_idlePosition);
 	percent_t etbIdleAddition = PERCENT_DIV * engineConfiguration->etbIdleThrottleRange * etbIdlePosition;
@@ -334,9 +338,9 @@ expected<percent_t> EtbController::getSetpointEtb() {
 	// [0, 100] -> [idle, 100]
 	// 0% target from table -> idle position as target
 	// 100% target from table -> 100% target position
-	targetWithIdlePosition = interpolateClamped(0, etbIdleAddition, 100, 100, etbCurrentTarget);
+	targetWithIdlePosition = interpolateClamped(0, etbIdleAddition, 100, 100, etbTargetWithCruise);
 
-	percent_t targetPosition = std::max(targetWithIdlePosition + getLuaAdjustment(), getCruiseLuaAdjustment());
+	percent_t targetPosition = targetWithIdlePosition + getLuaAdjustment();
 	// just an additional logging data point
 	adjustedEtbTarget = targetPosition;
 
@@ -393,6 +397,10 @@ void EtbController::setCruiseLuaAdjustment(float cruiseAdjustment) {
 	cruiseLuaAdjustment = cruiseAdjustment;
 	m_cruiseLuaAdjustmentTimer.reset();
 }
+void EtbController::setLimiterLuaAdjustment(float limiterAdjustment) {
+	limiterLuaAdjustment = limiterAdjustment;
+	m_limiterLuaAdjustmentTimer.reset();
+}
 
 /**
  * positive adjustment opens TPS, negative closes TPS
@@ -414,6 +422,15 @@ float EtbController::getCruiseLuaAdjustment() const {
 		return 0;
 	} else {
 		return cruiseLuaAdjustment;
+	}
+}
+float EtbController::getLimiterLuaAdjustment() const {
+	// If the lua position hasn't been set in 0.1 second, don't adjust!
+	// This avoids a stuck throttle due to hung/rogue/etc Lua script
+	if (m_limiterLuaAdjustmentTimer.getElapsedSeconds() > 0.1f) {
+		return 100;
+	} else {
+		return limiterLuaAdjustment;
 	}
 }
 
@@ -873,6 +890,8 @@ void setDefaultEtbParameters() {
 
 	engineConfiguration->etb_iTermMin = -30;
 	engineConfiguration->etb_iTermMax = 30;
+  engineConfiguration->etb_antiwindupFreq = 0.0;
+  engineConfiguration->etb_derivativeFilterLoss = 0.0;
 
 	engineConfiguration->etbJamDetectThreshold = 10;
 //	engineConfiguration->etbJamTimeout = 1;
@@ -1052,6 +1071,19 @@ void setEtbCruiseLuaAdjustment(percent_t pos) {
 			// try to adjust all ETB
 			if (etb->getFunction() == DC_Throttle1 || etb->getFunction() == DC_Throttle2) {
 				etb->setCruiseLuaAdjustment(pos);
+			}
+		}
+	}
+}
+void setEtbLimiterLuaAdjustment(percent_t pos) {
+	for (int i = 0; i < ETB_COUNT; i++) {
+		/* TODO: use from engine, add getFunction() to base class */
+		//if (auto etb = engine->etbControllers[i]) {
+		if (auto etb = etbControllers[i]) {
+			assertNotNullVoid(etb);
+			// try to adjust all ETB
+			if (etb->getFunction() == DC_Throttle1 || etb->getFunction() == DC_Throttle2) {
+				etb->setLimiterLuaAdjustment(pos);
 			}
 		}
 	}

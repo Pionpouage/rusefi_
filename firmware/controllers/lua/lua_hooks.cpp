@@ -679,6 +679,8 @@ void configureRusefiLuaHooks(lua_State* lState) {
 		.ctor<float, float, float, float, float>()
 		.fun("get", &LuaPid::get)
 		.fun("setOffset", &LuaPid::setOffset)
+		.fun("setItermMin", &LuaPid::setItermMin)
+		.fun("setItermMax", &LuaPid::setItermMax)
 		.fun("reset", &LuaPid::reset);
 
 	LuaClass<LuaIndustrialPid> luaIndustrialPid(lState, "IndustrialPid");
@@ -686,6 +688,8 @@ void configureRusefiLuaHooks(lua_State* lState) {
 		.ctor<float, float, float, float, float>()
 		.fun("get", &LuaIndustrialPid::get)
 		.fun("setOffset", &LuaIndustrialPid::setOffset)
+		.fun("setItermMin", &LuaIndustrialPid::setItermMin)
+		.fun("setItermMax", &LuaIndustrialPid::setItermMax)
 		.fun("setDerivativeFilterLoss", &LuaIndustrialPid::setDerivativeFilterLoss)
 		.fun("setAntiwindupFreq", &LuaIndustrialPid::setAntiwindupFreq)
 		.fun("reset", &LuaIndustrialPid::reset);
@@ -974,10 +978,17 @@ extern int luaCommandCounters[LUA_BUTTON_COUNT];
 
 		return 0;
 	});
-	lua_register(lState, "setEtbCruiseAdd", [](lua_State* l) {
+	lua_register(lState, "setEtbCruise", [](lua_State* l) {
 		auto cruiseLuaAdjustment = luaL_checknumber(l, 1);
 
 		setEtbCruiseLuaAdjustment(cruiseLuaAdjustment);
+
+		return 0;
+	});
+	lua_register(lState, "setEtbLimiter", [](lua_State* l) {
+		auto limiterLuaAdjustment = luaL_checknumber(l, 1);
+
+		setEtbLimiterLuaAdjustment(limiterLuaAdjustment);
 
 		return 0;
 	});

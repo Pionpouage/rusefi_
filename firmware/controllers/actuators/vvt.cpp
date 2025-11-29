@@ -108,7 +108,10 @@ expected<percent_t> VvtController::getClosedLoop(angle_t target, angle_t observa
 	bool isInverted = shouldInvertVvt(m_cam);
 	m_pid.setErrorAmplification(isInverted ? -1.0f : 1.0f);
 
-	float retVal = m_pid.getOutput(target, observation);
+	m_pid.iTermMin = engineConfiguration->vvt_iTermMin[m_cam];
+	m_pid.iTermMax = engineConfiguration->vvt_iTermMax[m_cam];
+  
+  float retVal = m_pid.getOutput(target, observation);
 
 #if EFI_TUNER_STUDIO
 	m_pid.postState(engine->outputChannels.vvtStatus[index]);
