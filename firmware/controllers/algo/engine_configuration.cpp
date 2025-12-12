@@ -109,6 +109,7 @@ static void wipeStrings() {
 	fillAfterString(engineConfiguration->engineMake, sizeof(vehicle_info_t));
 	fillAfterString(engineConfiguration->engineCode, sizeof(vehicle_info_t));
 	fillAfterString(engineConfiguration->vehicleName, sizeof(vehicle_info_t));
+	fillAfterString(engineConfiguration->vinNumber, sizeof(vin_number_t));
 }
 
 void onBurnRequest() {
@@ -119,7 +120,7 @@ void onBurnRequest() {
 }
 
 /**
- * this hook is about https://github.com/rusefi/rusefi/wiki/Custom-Firmware and https://github.com/rusefi/rusefi/wiki/Canned-Tune-Process
+ * this hook is about https://wiki.rusefi.com/Custom-Firmware and https://wiki.rusefi.com/Canned-Tune-Process
  * todo: why two hooks? is one already dead?
  */
 void boardBeforeTuneDefaults() {
@@ -618,7 +619,9 @@ static void setDefaultEngineConfiguration() {
 
 	setLinearCurve(config->throttleEstimateEffectiveAreaBins, 0, 100);
 #endif // EFI_ENGINE_CONTROL
-    #include "default_script.lua"
+	// Allow custom default_script.lua to be provided by BOARDINC
+	// see https://gcc.gnu.org/onlinedocs/gcc-2.95.3/cpp_1.html#SEC6
+	#include <default_script.lua>
 }
 
 #if defined(STM32F7) && defined(HARDWARE_CI)

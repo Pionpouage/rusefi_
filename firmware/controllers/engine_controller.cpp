@@ -702,7 +702,13 @@ bool validateConfigOnStartUpOrBurn() {
 		ensureArrayIsAscending("Oil pressure protection", config->minimumOilPressureBins);
 	}
 
+
 	return true;
+}
+
+bool validateConfigOnStartUpOrBurn(bool isRunningOnBurn) {
+	ConfigurationWizard::onConfigOnStartUpOrBurn(isRunningOnBurn);
+	return validateConfigOnStartUpOrBurn();
 }
 
 #if !EFI_UNIT_TEST

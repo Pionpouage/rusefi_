@@ -170,6 +170,7 @@ enum class trigger_type_e : uint32_t {
 	TT_VVT_SUBARU_7_WITHOUT_6 = 51,
 	TT_NISSAN_MR18_CAM_VVT = 52,
 	// https://rusefi.com/forum/viewtopic.php?f=5&t=1912
+	// also known as Audi 5 Cyl
 	TT_TRI_TACH = 53,
 	TT_GM_60_2_2_2 = 54,
 	// * https://rusefi.com/forum/viewtopic.php?f=5&t=1937
@@ -256,8 +257,8 @@ typedef enum {
 	COMMAND_X14_UNUSED_0 = 0x00,
 	COMMAND_X14_UNUSED_1 = 0x01,
 	COMMAND_X14_UNUSED_2 = 0x02,
-	COMMAND_X14_UNUSED_3 = 0x03,
-	COMMAND_X14_UNUSED_4 = 0x04,
+	TS_TCU_UPSHIFT_REQUEST = 0x03,
+	TS_TCU_DOWNSHIFT_REQUEST = 0x04,
 	TS_SET_STEPPER_IDLE = 0x05,
 	TS_GRAB_PEDAL_UP = 6,
 	TS_GRAB_PEDAL_WOT = 7,
@@ -287,6 +288,7 @@ typedef enum {
 	TS_EWG_AUTOCAL_0_FAST = 0x1F,
 	TS_GRAB_TPS_CLOSED = 0x20,
 	TS_GRAB_TPS_OPEN = 0x21,
+	TS_WIDEBAND_UPDATE_FILE = 0x22,
 } ts_14_command;
 
 typedef enum {
@@ -329,6 +331,7 @@ typedef enum {
 	TS_WIDEBAND_FLASH_BY_ID = 35,
 	TS_STOP_ENGINE = 36,
 	TS_WIDEBAND_SET_SENS_BY_ID = 37,
+	TS_WIDEBAND_FLASH_BY_ID_FILE = 38,
 } ts_command_e;
 
 typedef enum {

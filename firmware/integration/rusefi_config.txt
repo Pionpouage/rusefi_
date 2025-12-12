@@ -114,7 +114,7 @@ struct_no_prefix engine_configuration_s
 #define SENT_INPUT_COUNT 1
 
 ! more normal people are tired of us using 'true'/'false', we need to start removing. At least we have to stop adding :)
-#define TRUE_FALSE_COUNT_LIMIT 147
+#define TRUE_FALSE_COUNT_LIMIT 71
 
 #define TRACTION_CONTROL_ETB_DROP_SLIP_SIZE 6
 #define TRACTION_CONTROL_ETB_DROP_SPEED_SIZE 6
@@ -565,39 +565,40 @@ end_struct
 injector_s @@INSTANCE_INJECTOR@@
 injector_s injectorSecondary
 
-bit isForcedInduction;Does the vehicle have a turbo or supercharger?
-bit useFordRedundantTps;On some Ford and Toyota vehicles one of the throttle sensors is not linear on the full range, i.e. in the specific range of the positions we effectively have only one sensor.
-bit enableKline
-bit overrideTriggerGaps
-bit enableFan1WithAc;Turn on this fan when AC is on.
-bit enableFan2WithAc;Turn on this fan when AC is on.
-bit enableTrailingSparks;Enable secondary spark outputs that fire after the primary (rotaries, twin plug engines).
-bit etb_use_two_wires;TLE7209 and L6205 use two-wire mode. TLE9201 and VNH2SP30 do NOT use two wire mode.
-bit isDoubleSolenoidIdle;Subaru/BMW style where default valve position is somewhere in the middle. First solenoid opens it more while second can close it more than default position.
-bit useEeprom
-bit useCicPidForIdle;Switch between Industrial and Cic PID implementation
+bit isForcedInduction,"yes","no";Does the vehicle have a turbo or supercharger?
+bit useFordRedundantTps,"yes","no";On some Ford and Toyota vehicles one of the throttle sensors is not linear on the full range, i.e. in the specific range of the positions we effectively have only one sensor.
+bit enableKline,"enabled","disabled"
+bit overrideTriggerGaps,"yes","no"
+bit enableFan1WithAc,"yes","no";Turn on this fan when AC is on.
+bit enableFan2WithAc,"yes","no";Turn on this fan when AC is on.
+bit enableTrailingSparks,"yes","no";Enable secondary spark outputs that fire after the primary (rotaries, twin plug engines).
+bit etb_use_two_wires,"yes","no";TLE7209 and L6205 use two-wire mode. TLE9201 and VNH2SP30 do NOT use two wire mode.
+bit isDoubleSolenoidIdle,"yes","no";Subaru/BMW style where default valve position is somewhere in the middle. First solenoid opens it more while second can close it more than default position.
+bit useEeprom,"yes","no"
+bit useCicPidForIdle,"Cic","Industrial";Switch between Industrial and Cic PID implementation
 bit useTLE8888_cranking_hack;
-bit kickStartCranking
+bit kickStartCranking,"yes","no"
 bit useSeparateIdleTablesForCrankingTaper,"enabled","disabled";This uses separate ignition timing and VE tables not only for idle conditions, also during the postcranking-to-idle taper transition (See also afterCrankingIACtaperDuration).
 bit launchControlEnabled,"enabled","disabled"
 bit antiLagEnabled,"enabled","disabled"
 bit useRunningMathForCranking,"Fuel Map","Fixed";For cranking either use the specified fixed base fuel mass, or use the normal running math (VE table).
-bit displayLogicLevelsInEngineSniffer;Shall we display real life signal or just the part consumed by trigger decoder.\nApplies to both trigger and cam/vvt input.
+bit displayLogicLevelsInEngineSniffer,"yes","no";Shall we display real life signal or just the part consumed by trigger decoder.\nApplies to both trigger and cam/vvt input.
 bit useTLE8888_stepper
-bit usescriptTableForCanSniffingFiltering
+bit usescriptTableForCanSniffingFiltering,"yes","no"
 bit verboseCan,"Print all","Do not print";Print incoming and outgoing first bus CAN messages in rusEFI console
 bit artificialTestMisfire,"Danger Mode","No thank you";Experimental setting that will cause a misfire\nDO NOT ENABLE.
-bit useFordRedundantPps;On some Ford and Toyota vehicles one of the pedal sensors is not linear on the full range, i.e. in the specific range of the positions we effectively have only one sensor.
-bit cltSensorPulldown
-bit iatSensorPulldown
-bit allowIdenticalPps
-bit overrideVvtTriggerGaps
-bit useSpiImu;If enabled - use onboard SPI Accelerometer, otherwise listen for CAN messages
-bit enableStagedInjection
+bit useFordRedundantPps,"yes","no";On some Ford and Toyota vehicles one of the pedal sensors is not linear on the full range, i.e. in the specific range of the positions we effectively have only one sensor.
+bit cltSensorPulldown,"yes","no"
+bit iatSensorPulldown,"yes","no"
+bit allowIdenticalPps,"yes","no"
+bit overrideVvtTriggerGaps,"yes","no"
+bit useSpiImu,"yes","no";If enabled - use onboard SPI Accelerometer, otherwise listen for CAN messages
+bit enableStagedInjection,"enabled","disabled"
 bit useIdleAdvanceWhileCoasting,"yes","no"
 
-! note: 0.00489 mult is correct for "faking" 10 bit ADC with 5V Vref
-custom tps_limit_t 2 scalar, S16, @OFFSET@, "V", 0.0048828125, 0, 0, 5, 2
+! note: 0.00489 mult is correct for "faking" 10 bit ADC with 5V Vref - NOPE!
+! note: see TPS_TS_CONVERSION, this is TS related legacy stuff that should be removed someday. 1000 units for 0..5V range
+custom tps_limit_t 2 scalar, S16, @OFFSET@, "V", 0.005, 0, 0, 5, 2
 tps_limit_t tpsMin;Closed voltage for primary throttle position sensor
 tps_limit_t tpsMax;Fully opened voltage for primary throttle position sensor
 
@@ -741,7 +742,7 @@ struct trigger_config_s
 #define trigger_type_e_enum "custom toothed wheel", "Ford Aspire", "Dodge Neon 1995", "Miata NA", "INVALID", "GM_7X", "Daihatsu 3 cylinder", "Mazda SOHC 4", "60-2", "36-1", "Mercedes Two Segment", "Single Tooth", "EZ30", "INVALID", "Dodge Neon 2003", "Mazda DOHC 1+4", "1+1", "INVALID", "Half Moon", "Dodge Ram 1+16", "60-2 Wrong Polarity", "Benelli Tre", "Dodge Stratus", "36_2_2_2", "Nissan Primera", "INVALID",                                        "Rover K", "GM 24x 5 degree", "Honda CBR 600 Cam", "INVALID", "probably broken ChryslerNGC 36-2-2", "3-1 skipped", "Dodge Neon 2003 crank", "Miata NB", "INVALID", "INVALID", "Subaru 7+6", "Jeep 18-2-2-2", "12crank/24cam", "Dodge Neon 1995 crank only", "Jeep XJ 4 cyl", "FiatIAQ_P8", "Mazda Z5", "INVALID", "Renix 44-2-2", "Renix 66-2-2-2", "Honda K 12+1", "INVALID", "36-2", "Subaru SVX", "Suzuki K6A", "Subaru 7 without 6", "INVALID", "INVALID", "GM 60-2-2-2", "Skoda Favorit", "INVALID",       "Kawa KX450F", "Nissan VQ35", "INVALID", "Nissan VQ30", "Nissan QR25", "INVALID", "Subaru SVX Crank 1", "Subaru SVX Cam VVT", "Ford PIP", "Suzuki G13B", "Honda K 4+1", "Nissan MR18 Crank", "32-2", "36-2-1", "36-2-1-1", "3-0", "INVALID", "GM 24x 3 degree", "60-2-2 F3R", "Mitsu 4G63 Crank", "x2 30 Deg camshaft BTDC", "INVALID", "INVALID",          "6-0", "Daihatsu 4 cylinder", "INVALID", "dev", "Nissan HR", "Arctic Cat", "HR12 in", "HONDA J30A2", "trg88", "trg89", "Dodge/Chrysler/Jeep V8 5.7L", "Toyota UZ 3 tooth", "Jeep EVD 36-2-2", "Jeep 66-2-2-2", "Subaru 6 tooth Crank"
 
 custom trigger_type_e 4 bits, U32, @OFFSET@, [0:6], @@trigger_type_e_enum@@
-	trigger_type_e type;https://github.com/rusefi/rusefi/wiki/All-Supported-Triggers
+	trigger_type_e type;https://wiki.rusefi.com/All-Supported-Triggers
 	int customTotalToothCount;;"number", 1, 0, 1, 300, 0
 	int customSkippedToothCount;;"number", 1, 0, 0, 300, 0
 end_struct
@@ -883,44 +884,46 @@ spi_device_e digitalPotentiometerSpiDevice;Digital Potentiometer is used by stoc
 	uint8_t autoscale lambdaProtectionMinLoad;;"%", 10, 0, 0, @@MAP_UPPER_LIMIT@@, 0
 
 	! bit 0
-	bit is_enabled_spi_1
-	bit is_enabled_spi_2
-	bit is_enabled_spi_3
+	bit is_enabled_spi_1,"yes","no"
+	bit is_enabled_spi_2,"yes","no"
+	bit is_enabled_spi_3,"yes","no"
 	bit isSdCardEnabled,"enabled","disabled"
 	bit rusefiVerbose29b,"29 bit","11 bit";Use 11 bit (standard) or 29 bit (extended) IDs for rusEFI verbose CAN format.
-	bit rethrowHardFault
-	bit verboseQuad
+	bit rethrowHardFault,"yes","no"
+	bit verboseQuad,"yes","no"
 
 	! bit 8
 	bit useStepperIdle;This setting should only be used if you have a stepper motor idle valve and a stepper motor driver installed.
 	bit enabledStep1Limiter
 	bit lambdaProtectionEnable
-	bit verboseTLE8888
-	bit enableVerboseCanTx;CAN broadcast using custom rusEFI protocol
-	bit externalRusEfiGdiModule
+	bit verboseTLE8888,"yes","no"
+	bit enableVerboseCanTx,"yes","no";CAN broadcast using custom rusEFI protocol
+	bit externalRusEfiGdiModule,"yes","no"
 	bit unusedFlipWboChannels
-	bit measureMapOnlyInOneCylinder;Useful for individual intakes
+	bit measureMapOnlyInOneCylinder,"yes","no";Useful for individual intakes
 
 	! bit 16
-	bit stepperForceParkingEveryRestart
+	bit stepperForceParkingEveryRestart,"yes","no"
 	bit isFasterEngineSpinUpEnabled,"enabled","disabled";If enabled, try to fire the engine before a full engine cycle has been completed using RPM estimated from the last 90 degrees of engine rotation. As soon as the trigger syncs plus 90 degrees rotation, fuel and ignition events will occur. If disabled, worst case may require up to 4 full crank rotations before any events are scheduled.
 	bit coastingFuelCutEnabled;This setting disables fuel injection while the engine is in overrun, this is useful as a fuel saving measure and to prevent back firing.
 	bit useIacTableForCoasting,"enabled","disabled";Override the IAC position during overrun conditions to help reduce engine breaking, this can be helpful for large engines in light weight cars or engines that have trouble returning to idle.
-	bit useNoiselessTriggerDecoder
-	bit useIdleTimingPidControl
+	bit useNoiselessTriggerDecoder,"yes","no"
+	bit useIdleTimingPidControl,"yes","no"
 	bit disableEtbWhenEngineStopped;Allows disabling the ETB when the engine is stopped. You may not like the power draw or PWM noise from the motor, so this lets you turn it off until it's necessary.
-	bit is_enabled_spi_4
+	bit is_enabled_spi_4,"yes","no"
 
 	! bit 24
-	bit pauseEtbControl;Disable the electronic throttle motor and DC idle motor for testing.\nThis mode is for testing ETB/DC idle position sensors, etc without actually driving the throttle.
+	bit pauseEtbControl,"yes","no";Disable the electronic throttle motor and DC idle motor for testing.\nThis mode is for testing ETB/DC idle position sensors, etc without actually driving the throttle.
 
-	bit verboseKLine
-	bit idleIncrementalPidCic
+	bit verboseKLine,"yes","no"
+	bit idleIncrementalPidCic,"yes","no"
 ! technical debt 'enableAemXSeries' should probably be renamed to enableCanWideband one day once we improve calibration migration toolset
-	bit enableAemXSeries;AEM X-Series or rusEFI Wideband
-	bit modeledFlowIdle
+	bit enableAemXSeries,"yes","no";AEM X-Series or rusEFI Wideband
+	bit modeledFlowIdle,"yes","no"
 	bit isTuningDetectorEnabled,"yes","no"
-	! bits 30, 31 are free to use
+	! hack not to break tunes before 2779925f54f5c2d23499cbb2797f71508c652f54 "injector lag lookup should be done based on differential pressure"
+	bit useAbsolutePressureForLagTime,"yes","no"
+	! bit 31 is free to use
 	! 'unused32nd' is the 32nd bit here, you would need another bit region if more bits are desired
 
 	brain_input_pin_e[LOGIC_ANALYZER_CHANNEL_COUNT iterate] logicAnalyzerPins;
@@ -1049,7 +1052,10 @@ custom script_setting_t 4 scalar, F32, @OFFSET@, 		"",	   1,	   0, 0, 18000,	  2
 	bit tcuEnabled,"enabled","disabled"
 bit canBroadcastUseChannelTwo,"second","first"
 	bit useRawOutputToDriveIdleStepper,"yes","no";If enabled we use four Push-Pull outputs to directly drive stepper idle air valve coils
+! bit 29
 bit verboseCan2,"Print all","Do not print";Print incoming and outgoing second bus CAN messages in rusEFI console
+! TS plugin string support seems to be limited, this is our work-around
+bit vinIsEmpty
 
 
 	dc_io[ETB_COUNT iterate] etbIo
@@ -1271,8 +1277,8 @@ int16_t tps2Max;Full throttle#2. tpsMax value as 10 bit ADC value. Not Voltage!\
 	bit useHardSkipInTraction,"yes","no"
 	bit useAuxSpeedForSlipRatio,"yes","no";Use Aux Speed 1 as one of speeds for wheel slip ratio?
 	bit useVssAsSecondWheelSpeed,"yes","no";VSS and Aux Speed 1 or Aux Speed 1 with Aux Speed 2?
-	bit is_enabled_spi_5
-	bit is_enabled_spi_6
+	bit is_enabled_spi_5,"yes","no"
+	bit is_enabled_spi_6,"yes","no"
 	bit enableAemXSeriesEgt,"yes","no";AEM X-Series EGT gauge kit or rusEFI EGT sensor from Wideband controller
 	bit startRequestPinInverted,"Inverted","Normal"
 	bit tcu_rangeSensorPulldown
@@ -1335,7 +1341,7 @@ int16_t tps2Max;Full throttle#2. tpsMax value as 10 bit ADC value. Not Voltage!\
 	bit can2OpenBLT,"yes","no"; Allow OpenBLT on Secondary CAN
 	bit injectorFlowAsMassFlow,"grams per second","cc/min";Select whether to configure injector flow in volumetric flow (default, cc/min) or mass flow (g/s).
 	bit boardUseCanTerminator,"yes","no"
-	bit kLineDoHondaSend
+	bit kLineDoHondaSend,"yes","no"
 	bit can1ListenMode,"yes","no";ListenMode is about acknowledging CAN traffic on the protocol level. Different from canWriteEnabled
 	bit can2ListenMode,"yes","no"
 	uint16_t camDecoder2jzPosition;Angle of tooth detection within engine phase cycle;"angle", 1, 0, 0, 360, 0
@@ -2044,7 +2050,7 @@ float[IAT_CURVE_SIZE] iatFuelCorr;;"ratio", 1, 0, 0, 5, 2
 
 #define CLT_IDLE_TABLE_CLT_SIZE 8
 #define CLT_IDLE_TABLE_RPM_SIZE 2
-int16_t[CLT_IDLE_TABLE_CLT_SIZE] cltIdleCorrBins;CLT-based idle position for simple manual idle controller;"SPECIAL_CASE_TEMPERATURE", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 1
+float[CLT_IDLE_TABLE_CLT_SIZE] cltIdleCorrBins;CLT-based idle position for simple manual idle controller;"SPECIAL_CASE_TEMPERATURE", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 2
 float[CLT_IDLE_TABLE_RPM_SIZE x CLT_IDLE_TABLE_CLT_SIZE] cltIdleCorrTable;    CLT-based idle position for simple manual idle controller;"%", 1, 0, 0, 100, 2
 uint8_t[CLT_IDLE_TABLE_RPM_SIZE] autoscale rpmIdleCorrBins;;"Target RPM", @@RPM_AS_BYTE_SCALE@@, 0, 0, @@RPM_AS_BYTE_LIMIT@@, 0
 

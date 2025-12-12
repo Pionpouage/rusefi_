@@ -526,6 +526,9 @@ float getConfigValueByHash(const int hash) {
 // isTuningDetectorEnabled
 		case 1997151643:
 			return engineConfiguration->isTuningDetectorEnabled;
+// useAbsolutePressureForLagTime
+		case -1155937004:
+			return engineConfiguration->useAbsolutePressureForLagTime;
 // verboseCanBaseAddress
 		case 6238478:
 			return engineConfiguration->verboseCanBaseAddress;
@@ -673,6 +676,9 @@ float getConfigValueByHash(const int hash) {
 // verboseCan2
 		case -1056203297:
 			return engineConfiguration->verboseCan2;
+// vinIsEmpty
+		case 69606941:
+			return engineConfiguration->vinIsEmpty;
 // boostPid.pFactor
 		case 1421783686:
 			return engineConfiguration->boostPid.pFactor;
@@ -2915,6 +2921,11 @@ bool setConfigValueByName(const char *name, float value) {
 		engineConfiguration->isTuningDetectorEnabled = (int)value;
 		return 1;
 	}
+		case -1155937004:
+	{
+		engineConfiguration->useAbsolutePressureForLagTime = (int)value;
+		return 1;
+	}
 		case 6238478:
 	{
 		engineConfiguration->verboseCanBaseAddress = (int)value;
@@ -3158,6 +3169,11 @@ bool setConfigValueByName(const char *name, float value) {
 		case -1056203297:
 	{
 		engineConfiguration->verboseCan2 = (int)value;
+		return 1;
+	}
+		case 69606941:
+	{
+		engineConfiguration->vinIsEmpty = (int)value;
 		return 1;
 	}
 		case 1421783686:

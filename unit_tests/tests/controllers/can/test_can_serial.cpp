@@ -18,16 +18,21 @@
 
 using namespace std::string_literals;
 
+// todo: split into TX and RX parts?
 class TestCanTransport : public ICanTransport {
 public:
-	virtual can_msg_t transmit(const CanTxMessage *ctfp, can_sysinterval_t timeout) override {
-		const CANTxFrame * frame = ctfp->getFrame();
+	virtual can_msg_t transmit(CanTxMessage &ctfp, can_sysinterval_t timeout) override {
+		const CANTxFrame * frame = ctfp.getFrame();
 		// invoke copy constructor to clone frame
 		CANTxFrame localCopy = *frame;
 		localCopy.DLC = 8;
 		ctfList.emplace_back(localCopy);
 		return CAN_MSG_OK;
 	}
+
+  virtual void onTpFirstFrame() override {
+    // todo: add coverage?
+  }
 
 	virtual can_msg_t receive(CANRxFrame *crfp, can_sysinterval_t timeout) override {
 		if (crfList.empty())
@@ -52,7 +57,7 @@ public:
 
 class TestCanStreamerState : public CanStreamerState {
 public:
-	TestCanStreamerState() : CanStreamerState(&streamer, 0, 10) {}
+	TestCanStreamerState() : CanStreamerState(&streamer, &streamer, 0, 10, 10) {}
 
 	void test(const std::vector<std::string> & dataList, const std::vector<std::string> & frames, int fifoLeftoverSize, const std::vector<size_t> & receiveChunks) {
 		EngineTestHelper eth(engine_type_e::TEST_ENGINE);

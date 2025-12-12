@@ -520,6 +520,9 @@ AEM X-Series or rusEFI Wideband
 ### isTuningDetectorEnabled
 
 
+### useAbsolutePressureForLagTime
+
+
 ### verboseCanBaseAddress
 
 
@@ -666,6 +669,9 @@ If enabled we use four Push-Pull outputs to directly drive stepper idle air valv
 
 ### verboseCan2
 Print incoming and outgoing second bus CAN messages in rusEFI console
+
+### vinIsEmpty
+
 
 ### boostPid.pFactor
 
@@ -1480,7 +1486,7 @@ Stoichiometric ratio for your primary fuel. When Flex Fuel is enabled, this valu
 ### idlerpmpid_iTermMax
 iTerm max value
 
-### etbIdleThrottleRange<>
+### etbIdleThrottleRange
 This sets the range of the idle control on the ETB. At 100% idle position, the value specified here sets the base ETB position. Can also be interpreted as the maximum allowed TPS% Opening for Idle Control.
 
 ### triggerCompCenterVolt

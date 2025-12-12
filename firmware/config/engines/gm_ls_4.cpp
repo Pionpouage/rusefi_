@@ -7,6 +7,7 @@
 #include "defaults.h"
 #include <rusefi/arrays.h>
 #include "proteus_meta.h"
+#include "settings.h"
 
 #ifdef HW_HELLEN
 #include "hellen_meta.h"
@@ -55,6 +56,20 @@ void setGmLs4() {
   engineConfiguration->camInputs[1] = Gpio::Unassigned;
   engineConfiguration->camInputs[2] = Gpio::Unassigned;
   engineConfiguration->camInputs[3] = Gpio::Unassigned;
+#endif
+
+#ifdef HW_HELLEN_UAEFI121
+  engineConfiguration->camInputs[1] = Gpio::Unassigned;
+	// cylinders 1 and 6
+	// cylinders 2 and 3
+  engineConfiguration->ignitionPins[2] = Gpio::Unassigned;
+  engineConfiguration->ignitionPins[3] = Gpio::Unassigned;
+  engineConfiguration->ignitionPins[4] = Gpio::Unassigned;
+  engineConfiguration->ignitionPins[5] = Gpio::Unassigned;
+	// cylinders 7 and 4
+	engineConfiguration->ignitionPins[6] = Gpio::MM100_IGN4;
+	// cylinders 8 and 5
+	engineConfiguration->ignitionPins[7] = Gpio::MM100_IGN3;
 #endif
 
 #ifdef HW_HELLEN_UAEFI
@@ -106,7 +121,7 @@ void setGmLs4() {
 	engineConfiguration->tChargeAirDecrLimit = 15;
 
 // see https://github.com/rusefi/rusefi_documentation/tree/master/OEM-Docs/GM/Tahoe-2011
-    strncpy(config->luaScript, R"(
+    setLuaScript( R"(
 
 function getBitRange(data, bitIndex, bitWidth)
 	byteIndex = bitIndex >> 3
@@ -210,7 +225,7 @@ function onTick()
     end
 end
 
-    )", efi::size(config->luaScript));
+    )");
 
 	setPPSCalibration(0.51, 2.11, 1.01, 4.23);
 	setTPS1Calibration(880, 129, 118, 870);

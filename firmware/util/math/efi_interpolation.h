@@ -24,7 +24,6 @@
 float interpolateClampedWithValidation(float x1, float y1, float x2, float y2, float x);
 float interpolateClamped(float x1, float y1, float x2, float y2, float x);
 float interpolateMsg(const char *msg, float x1, float y1, float x2, float y2, float x);
-float interpolateClampedMsg(const char *msg, float x1, float y1, float x2, float y2, float x);
 
 // _technically_ and _theoretically_ we can support flat line for both bins and values but I am not sure if
 // such a rare case is something we want to support

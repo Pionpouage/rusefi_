@@ -679,8 +679,8 @@ public class VariableRegistryValues {
 	public static final String GAUGE_NAME_FUEL_LAST_INJECTION_STAGE_2 = "Fuel: Last inj pulse width stg 2";
 	public static final String GAUGE_NAME_FUEL_LEVEL = "Fuel level";
 	public static final String GAUGE_NAME_FUEL_LOAD = "Fuel: Load";
-	public static final String GAUGE_NAME_FUEL_LTFT_1 = "Long Term Fuel Trim: Bank 1";
-	public static final String GAUGE_NAME_FUEL_LTFT_2 = "Long Term Fuel Trim: Bank 2";
+	public static final String GAUGE_NAME_FUEL_LTFT_1 = "Long Term Fuel Trim Bank 1";
+	public static final String GAUGE_NAME_FUEL_LTFT_2 = "Long Term Fuel Trim Bank 2";
 	public static final String GAUGE_NAME_FUEL_LTFT_ACC_1 = "LTFT learned accumulator: Bank 1";
 	public static final String GAUGE_NAME_FUEL_LTFT_ACC_2 = "LTFT learned accumulator: Bank 2";
 	public static final String GAUGE_NAME_FUEL_PRESSURE_HIGH = "Fuel pressure (high)";
@@ -1366,7 +1366,7 @@ public class VariableRegistryValues {
 	public static final int PEDAL_TO_TPS_SIZE = 8;
 	public static final String pedalSensor_NAME = "Accelerator pedal";
 	public static final String pedalToTpsTbl_NAME = "ETB pedal target";
-	public static final int persistent_config_s_size = 24040;
+	public static final int persistent_config_s_size = 23816;
 	public static final int pid_s_size = 20;
 	public static final int pin_input_mode_e_PI_DEFAULT = 0;
 	public static final int pin_input_mode_e_PI_INVERTED_DEFAULT = 4;
@@ -1400,7 +1400,6 @@ public class VariableRegistryValues {
 	public static final int REBOOT_COMMAND = 0xbb;
 	public static final int RPM_AS_BYTE_LIMIT = 25000;
 	public static final int RPM_AS_BYTE_SCALE = 100;
-	public static final int SCRIPT_CURVE_12 = 12;
 	public static final int SCRIPT_CURVE_16 = 16;
 	public static final int SCRIPT_CURVE_8 = 8;
 	public static final int SCRIPT_CURVE_COUNT = 6;
@@ -1502,7 +1501,7 @@ public class VariableRegistryValues {
 	public static final int torqueReductionActivationMode_e_TORQUE_REDUCTION_BUTTON = 0;
 	public static final int torqueReductionActivationMode_e_TORQUE_REDUCTION_CLUTCH_DOWN_SWITCH = 2;
 	public static final int torqueReductionActivationMode_e_TORQUE_REDUCTION_CLUTCH_UP_SWITCH = 3;
-	public static final int TOTAL_CONFIG_SIZE = 24040;
+	public static final int TOTAL_CONFIG_SIZE = 23816;
 	public static final int TPS_2_BYTE_PACKING_MULT = 100;
 	public static final int TPS_PPS_TOO_HIGH_THRESHOLD = 110;
 	public static final int TPS_PPS_TOO_LOW_THRESHOLD = -10;
@@ -1629,13 +1628,11 @@ public class VariableRegistryValues {
 	public static final String TRIGGERS_FILE_NAME = "triggers.txt";
 	public static final int TriggerWheel_T_PRIMARY = 0;
 	public static final int TriggerWheel_T_SECONDARY = 1;
-	public static final int TRUE_FALSE_COUNT_LIMIT = 147;
+	public static final int TRUE_FALSE_COUNT_LIMIT = 71;
 	public static final int ts_14_command_COMMAND_X14_UNUSED_0 = 0x00;
 	public static final int ts_14_command_COMMAND_X14_UNUSED_1 = 0x01;
 	public static final int ts_14_command_COMMAND_X14_UNUSED_15 = 0x15;
 	public static final int ts_14_command_COMMAND_X14_UNUSED_2 = 0x02;
-	public static final int ts_14_command_COMMAND_X14_UNUSED_3 = 0x03;
-	public static final int ts_14_command_COMMAND_X14_UNUSED_4 = 0x04;
 	public static final int ts_14_command_TS_ETB_AUTOCAL_0 = 0x0E;
 	public static final int ts_14_command_TS_ETB_AUTOCAL_0_FAST = 0x1C;
 	public static final int ts_14_command_TS_ETB_AUTOCAL_1 = 0x11;
@@ -1660,9 +1657,12 @@ public class VariableRegistryValues {
 	public static final int ts_14_command_TS_SD_UNMOUNT = 0x19;
 	public static final int ts_14_command_TS_SET_STEPPER_IDLE = 0x05;
 	public static final int ts_14_command_TS_START_STOP_ENGINE = 0x09;
+	public static final int ts_14_command_TS_TCU_DOWNSHIFT_REQUEST = 0x04;
+	public static final int ts_14_command_TS_TCU_UPSHIFT_REQUEST = 0x03;
 	public static final int ts_14_command_TS_TRIGGER_STIMULATOR_DISABLE = 0x0F;
 	public static final int ts_14_command_TS_TRIGGER_STIMULATOR_ENABLE = 0x0D;
 	public static final int ts_14_command_TS_WIDEBAND_UPDATE = 0x12;
+	public static final int ts_14_command_TS_WIDEBAND_UPDATE_FILE = 0x22;
 	public static final int ts_14_command_TS_WRITE_FLASH = 0x0A;
 	public static final int TS_BLOCK_READ_TIMEOUT = 3000;
 	public static final char TS_BURN_COMMAND = 'B';
@@ -1701,6 +1701,7 @@ public class VariableRegistryValues {
 	public static final int ts_command_e_TS_UNUSED_24 = 24;
 	public static final int ts_command_e_TS_WIDEBAND = 21;
 	public static final int ts_command_e_TS_WIDEBAND_FLASH_BY_ID = 35;
+	public static final int ts_command_e_TS_WIDEBAND_FLASH_BY_ID_FILE = 38;
 	public static final int ts_command_e_TS_WIDEBAND_PING_BY_ID = 34;
 	public static final int ts_command_e_TS_WIDEBAND_SET_IDX_BY_ID = 33;
 	public static final int ts_command_e_TS_WIDEBAND_SET_SENS_BY_ID = 37;
@@ -1741,10 +1742,10 @@ public class VariableRegistryValues {
 	public static final int TS_RESPONSE_UNRECOGNIZED_COMMAND = 0x83;
 	public static final int TS_SCATTER_OFFSETS_COUNT = 128;
 	public static final char TS_SET_LOGGER_SWITCH = 'l';
-	public static final String TS_SIGNATURE = "rusEFI master.2025.11.05.stm32h743_nucleo.2717008890";
+	public static final String TS_SIGNATURE = "rusEFI master.2025.12.12.stm32h743_nucleo.2222040601";
 	public static final char TS_SIMULATE_CAN = '>';
 	public static final char TS_TEST_COMMAND = 't';
-	public static final int TS_TOTAL_OUTPUT_SIZE = 2068;
+	public static final int TS_TOTAL_OUTPUT_SIZE = 2076;
 	public static final String TS_TRIGGER_SCOPE_CHANNEL_1_NAME = "Channel 1";
 	public static final String TS_TRIGGER_SCOPE_CHANNEL_2_NAME = "Channel 2";
 	public static final int TS_TRIGGER_SCOPE_DISABLE = 5;

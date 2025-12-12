@@ -1,9 +1,11 @@
 /*
  * Memory attributes settings.
  */
+#ifndef STM32_NOCACHE_ENABLE
 #define STM32_NOCACHE_ENABLE                TRUE
+#endif
 #define STM32_NOCACHE_MPU_REGION            MPU_REGION_6
-#define STM32_NOCACHE_RBAR                  0x30020000U
+#define STM32_NOCACHE_RBAR                  0x30002000U
 #define STM32_NOCACHE_RASR                  MPU_RASR_SIZE_16K
 
 /*
@@ -27,7 +29,9 @@
 #define STM32_CSI_ENABLED                   TRUE
 #define STM32_HSI48_ENABLED                 TRUE
 #define STM32_HSE_ENABLED                   TRUE
+#ifndef STM32_LSE_ENABLED
 #define STM32_LSE_ENABLED                   TRUE
+#endif
 #define STM32_HSIDIV                        STM32_HSIDIV_DIV1
 
 /*
@@ -37,12 +41,20 @@
 #define STM32_PLLSRC                        STM32_PLLSRC_HSE_CK
 #define STM32_PLLCFGR_MASK                  ~0
 
+#if (STM32_HSECLK == 20000000)
+	#define STM32_PLLX_DIVM_VALUE			4
+#elif (STM32_HSECLK == 25000000)
+	#define STM32_PLLX_DIVM_VALUE			5
+#else
+	#error "We have no confing for this STM32_HSECLK"
+#endif
+
 /* PLL1 output clock is 520MHz */
 #define STM32_PLL1_ENABLED                  TRUE
 #define STM32_PLL1_P_ENABLED                TRUE
 #define STM32_PLL1_Q_ENABLED                TRUE
 #define STM32_PLL1_R_ENABLED                TRUE
-#define STM32_PLL1_DIVM_VALUE               4
+#define STM32_PLL1_DIVM_VALUE               STM32_PLLX_DIVM_VALUE
 #define STM32_PLL1_DIVN_VALUE               104
 #define STM32_PLL1_FRACN_VALUE              0
 #define STM32_PLL1_DIVP_VALUE               1
@@ -54,7 +66,7 @@
 #define STM32_PLL2_P_ENABLED                TRUE
 #define STM32_PLL2_Q_ENABLED                TRUE
 #define STM32_PLL2_R_ENABLED                TRUE
-#define STM32_PLL2_DIVM_VALUE               4
+#define STM32_PLL2_DIVM_VALUE               STM32_PLLX_DIVM_VALUE
 #define STM32_PLL2_DIVN_VALUE               160
 #define STM32_PLL2_FRACN_VALUE              0
 #define STM32_PLL2_DIVP_VALUE               40
@@ -66,7 +78,7 @@
 #define STM32_PLL3_P_ENABLED                TRUE
 #define STM32_PLL3_Q_ENABLED                TRUE
 #define STM32_PLL3_R_ENABLED                TRUE
-#define STM32_PLL3_DIVM_VALUE               4
+#define STM32_PLL3_DIVM_VALUE               STM32_PLLX_DIVM_VALUE
 #define STM32_PLL3_DIVN_VALUE               96
 #define STM32_PLL3_FRACN_VALUE              0
 #define STM32_PLL3_DIVP_VALUE               10
@@ -78,7 +90,11 @@
  * Reading STM32 Reference Manual is required.
  */
 #define STM32_SW                            STM32_SW_PLL1_P_CK
+#if (STM32_LSE_ENABLED == TRUE)
 #define STM32_RTCSEL                        STM32_RTCSEL_LSE_CK
+#else
+#define STM32_RTCSEL                        STM32_RTCSEL_LSI_CK
+#endif
 #define STM32_D1CPRE                        STM32_D1CPRE_DIV1
 #define STM32_D1HPRE                        STM32_D1HPRE_DIV2
 #define STM32_D1PPRE3                       STM32_D1PPRE3_DIV2

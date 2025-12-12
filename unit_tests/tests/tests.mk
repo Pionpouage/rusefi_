@@ -1,5 +1,6 @@
 TESTS_SRC_CPP = \
 	tests/ltft_sandbox.cpp \
+	tests/log_replay_sandbox.cpp \
 	tests/trigger/test_all_triggers.cpp \
 	tests/trigger/test_trigger_sequence_finder.cpp \
 	tests/trigger/test_2_stroke.cpp \
@@ -93,6 +94,7 @@ TESTS_SRC_CPP = \
 	tests/test_fft.cpp \
 	tests/lua/test_lua_basic.cpp \
 	tests/lua/test_bit_range_msb.cpp \
+	tests/lua/test_bit_range.cpp \
 	tests/lua/test_lua_dbc.cpp \
 	tests/lua/test_motorola_dbc.cpp \
 	tests/lua/test_lua_bit_range_msb.cpp \
@@ -207,4 +209,5 @@ TESTS_SRC_CPP = \
 	tests/controllers/modules/vvl_controller/vvl_controller_clt_condition.cpp \
 	tests/controllers/modules/vvl_controller/vvl_controller_tps_condition.cpp \
 	tests/controllers/modules/vvl_controller/vvl_controller_map_condition.cpp \
-	tests/controllers/modules/vvl_controller/vvl_controller_afr_condition.cpp
+	tests/controllers/modules/vvl_controller/vvl_controller_afr_condition.cpp \
+	tests/controllers/modules/test_configuration_wizard.cpp
