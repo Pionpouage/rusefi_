@@ -33,4 +33,3 @@ jobs:
       - name: Build TS plugin body
         working-directory: ./java_tools/
         run: ./gradlew :ts_plugin:shadowJar
-		

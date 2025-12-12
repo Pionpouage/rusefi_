@@ -3,7 +3,7 @@ name: Configs & Live Docs
 on:
   push:
     branches:
-      - master
+      - experimental
 
 jobs:
   generate:
