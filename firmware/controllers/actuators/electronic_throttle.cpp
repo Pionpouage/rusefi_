@@ -328,7 +328,7 @@ expected<percent_t> EtbController::getSetpointEtb() {
 	float rpm = Sensor::getOrZero(SensorType::Rpm);
   percent_t preBoard = m_pedalProvider->getValue(rpm, sanitizedPedal);
 	etbCurrentTarget = boardAdjustEtbTarget(preBoard);
-  etbTargetWithCruise = clampF(getCruiseLuaAdjustment(), etbTargetWithCruise, getLimiterLuaAdjustment());
+  etbTargetWithCruise = clampF(getCruiseLuaAdjustment(), etbCurrentTarget, getLimiterLuaAdjustment());
 	boardEtbAdjustment = etbTargetWithCruise - preBoard;
 
 	percent_t etbIdlePosition = clampPercentValue(m_idlePosition);
@@ -504,8 +504,8 @@ expected<percent_t> EtbController::getClosedLoopAutotune(percent_t target, perce
 
 		// Publish to TS state
 #if EFI_TUNER_STUDIO
-		// Every 5 cycles (of the throttle), cycle to the next value
-		if (m_autotuneCounter >= 5) {
+		// Every 10 cycles (of the throttle), cycle to the next value
+		if (m_autotuneCounter >= 10) {
 			m_autotuneCounter = 0;
 			m_autotuneCurrentParam = (m_autotuneCurrentParam + 1) % 3; // three ETB calibs: P-I-D
 		}
