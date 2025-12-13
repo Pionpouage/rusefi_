@@ -230,7 +230,7 @@ void EtbController::reset(const char *reason) {
 	m_shouldResetPid = true;
 	etbTpsErrorCounter = 0;
 	etbPpsErrorCounter = 0;
-	limiterLuaAdjustment = 100;
+	//limiterLuaAdjustment = 100;
 #if EFI_UNIT_TEST
 	ebtResetCounter++;
 #endif // EFI_UNIT_TEST
