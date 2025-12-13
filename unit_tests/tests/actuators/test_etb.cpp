@@ -523,18 +523,29 @@ TEST(etb, setpointLuaAdder) {
 	// No adjustment, should be unadjusted
 	etb.setLuaAdjustment(0);
 	etb.setCruiseLuaAdjustment(0);
-	etb.setLimiterLuaAdjustment(0);
+	etb.setLimiterLuaAdjustment(100);
 	EXPECT_EQ(50, etb.getSetpoint().value_or(-1));
 
 	// Normal adjustments should do as expected
 	etb.setLuaAdjustment(10);
-	etb.setCruiseLuaAdjustment(10);
-	etb.setLimiterLuaAdjustment(10);
+	etb.setCruiseLuaAdjustment(0);
+	etb.setLimiterLuaAdjustment(100);
 	EXPECT_EQ(60, etb.getSetpoint().value_or(-1));
+
 	etb.setLuaAdjustment(-10);
-	etb.setCruiseLuaAdjustment(-10);
-	etb.setLimiterLuaAdjustment(-10);
+	etb.setCruiseLuaAdjustment(0);
+	etb.setLimiterLuaAdjustment(100);
 	EXPECT_EQ(40, etb.getSetpoint().value_or(-1));
+
+	etb.setLuaAdjustment(0);
+	etb.setCruiseLuaAdjustment(70);
+	etb.setLimiterLuaAdjustment(100);
+	EXPECT_EQ(70, etb.getSetpoint().value_or(-1));
+
+	etb.setLuaAdjustment(0);
+	etb.setCruiseLuaAdjustment(0);
+	etb.setLimiterLuaAdjustment(30);
+	EXPECT_EQ(30, etb.getSetpoint().value_or(-1));
 
 	// Crazy adjustments don't cause unreasonable target
 	etb.setLuaAdjustment(1000);
@@ -551,8 +562,8 @@ TEST(etb, setpointLuaAdder) {
 
 	// Adjustment works immediately after setting
 	etb.setLuaAdjustment(10);
-	etb.setCruiseLuaAdjustment(10);
-	etb.setLimiterLuaAdjustment(10);
+	etb.setCruiseLuaAdjustment(0);
+	etb.setLimiterLuaAdjustment(100);
 	EXPECT_EQ(60, etb.getSetpoint().value_or(-1));
 
 	// Adjustment works 0.19 second after setting
@@ -561,6 +572,33 @@ TEST(etb, setpointLuaAdder) {
 
 	// Adjustment resets to 0 after 0.21 second
 	setTimeNowUs(startTime + 0.21 * 1e6);
+	EXPECT_EQ(50, etb.getSetpoint().value_or(-1));
+
+	// Adjustment works immediately after setting
+	etb.setLuaAdjustment(0);
+	etb.setCruiseLuaAdjustment(70);
+	etb.setLimiterLuaAdjustment(100);
+	EXPECT_EQ(70, etb.getSetpoint().value_or(-1));
+
+	// Adjustment works 0.09 second after setting
+	setTimeNowUs(startTime + 0.09 * 1e6);
+	EXPECT_EQ(70, etb.getSetpoint().value_or(-1));
+
+	// Adjustment resets to 0 after 0.1 second
+	setTimeNowUs(startTime + 0.11 * 1e6);
+	EXPECT_EQ(50, etb.getSetpoint().value_or(-1));
+  
+	etb.setLuaAdjustment(0);
+	etb.setCruiseLuaAdjustment(0);
+	etb.setLimiterLuaAdjustment(30);
+	EXPECT_EQ(30, etb.getSetpoint().value_or(-1));
+
+	// Adjustment works 0.09 second after setting
+	setTimeNowUs(startTime + 0.09 * 1e6);
+	EXPECT_EQ(30, etb.getSetpoint().value_or(-1));
+
+	// Adjustment resets to 0 after 0.1 second
+	setTimeNowUs(startTime + 0.11 * 1e6);
 	EXPECT_EQ(50, etb.getSetpoint().value_or(-1));
 }
 
