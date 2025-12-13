@@ -29,6 +29,8 @@ public:
 	MOCK_METHOD(const pid_state_s&, getPidState, (), (const, override));
 	MOCK_METHOD(float, getCurrentTarget, (), (const, override));
 	MOCK_METHOD(void, setLuaAdjustment, (percent_t adjustment), (override));
+	MOCK_METHOD(void, setCruiseLuaAdjustment, (percent_t adjustment), (override));
+	MOCK_METHOD(void, setLimiterLuaAdjustment, (percent_t adjustment), (override));
 
 
 	// ClosedLoopController mocks
