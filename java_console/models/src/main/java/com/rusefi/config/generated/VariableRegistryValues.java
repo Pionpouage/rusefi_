@@ -452,7 +452,6 @@ public class VariableRegistryValues {
 	public static final int ego_sensor_e_ES_PLX = 4;
 	public static final String egoSettings_NAME = "CAN O2 sensors";
 	public static final int EGT_CHANNEL_COUNT = 8;
-	public static final int engine_configuration_s_size = 4268;
 	public static final int engine_configuration_s_size = 4280;
 	public static final int engine_load_mode_e_LM_ALPHA_N = 2;
 	public static final int engine_load_mode_e_LM_LUA = 3;
@@ -1347,10 +1346,8 @@ public class VariableRegistryValues {
 	public static final int lua_gauge_meaning_e_LUA_GAUGE_LOWER_BOUND = 0;
 	public static final int lua_gauge_meaning_e_LUA_GAUGE_UPPER_BOUND = 1;
 	public static final int LUA_PWM_COUNT = 8;
-	public static final int LUA_SCRIPT_SIZE = 8000;
 	public static final int LUA_SCRIPT_SIZE = 48000;
 	public static final int MAF_DECODING_COUNT = 32;
-	public static final String MAIN_HELP_URL = "http://www.rusefi.com/";
 	public static final String MAIN_HELP_URL = "https://rusefi.com/s/uaefi";
 	public static final String MAIN_PAGE_GAUGES_FILE = "tunerstudio/main_page_gauges.ini";
 	public static final int MAP_ANGLE_SIZE = 8;
@@ -1416,13 +1413,11 @@ public class VariableRegistryValues {
 	public static final int PAGE_SIZE_2 = 256;
 	public static final int PAGE_SIZE_3 = 2048;
 	public static final int PAGE_SIZE_4 = 1268;
-	public static final int PAGE_SIZE_5 = 8000;
 	public static final int PAGE_SIZE_5 = 48000;
 	public static final int PEDAL_TO_TPS_RPM_SIZE = 8;
 	public static final int PEDAL_TO_TPS_SIZE = 8;
 	public static final String pedalSensor_NAME = "Accelerator pedal";
 	public static final String pedalToTpsTbl_NAME = "ETB pedal target";
-	public static final int persistent_config_s_size = 16760;
 	public static final int persistent_config_s_size = 16812;
 	public static final int pid_s_size = 20;
 	public static final int pin_input_mode_e_PI_DEFAULT = 0;
