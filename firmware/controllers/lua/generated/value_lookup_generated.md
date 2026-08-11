@@ -1927,6 +1927,12 @@ Delay before cutting fuel due to low oil pressure. Use this to ignore short pres
 ### engineShutDownPeriod
 
 
+### can3ListenMode
+
+
+### verboseCan3
+
+
 ### knockSuppressMinTps
 Below TPS value all knock suppression will be disabled.
 
@@ -2210,5 +2216,8 @@ Dwell Duty Mode: percentage of the inter-spark interval used as coil dwell time.
 
 
 ### wizardInjectorOutputs
+
+
+### cyl8certification
 
 
